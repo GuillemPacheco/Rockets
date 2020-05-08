@@ -1,5 +1,5 @@
 package DomainRocket;
 
-public class Propeller {
-
+public class Propeller{
+	
 }
