@@ -1,8 +1,10 @@
-package DomainRocket;
+package Domain;
 
 public class Tank {
+	
 	protected float capacity;
 	protected float currentGasoline;
+	
 	public Tank (float capacity) {
 		this.capacity = capacity;
 		currentGasoline = capacity; // Starts full;

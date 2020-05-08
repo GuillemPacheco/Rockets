@@ -1,8 +1,6 @@
-package DomainRocket;
+package Domain;
 
 import java.util.List;
-
-import DomainCircuit.Circuit;
 
 public class Propeller{
 	

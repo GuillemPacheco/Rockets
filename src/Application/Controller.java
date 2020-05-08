@@ -3,7 +3,7 @@ package Application;
 import java.util.ArrayList;
 import java.util.List;
 
-import DomainRocket.Rocket;
+import Domain.Rocket;
 
 public class Controller {
 	
@@ -31,5 +31,8 @@ public class Controller {
 			if(rocket==null) {
 				throw new Exception("The rocket is not initialize");
 			}
+			
+			System.out.println("Starting competition. Circuit length: "+rocket.getCircuitDistance()+ " Max time: "+rocket.getCircuitTime());
+			
 		}
 }

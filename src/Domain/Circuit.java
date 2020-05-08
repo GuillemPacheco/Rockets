@@ -1,4 +1,4 @@
-package DomainCircuit;
+package Domain;
 
 public class Circuit {
 	
