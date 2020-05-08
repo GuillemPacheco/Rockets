@@ -17,7 +17,6 @@ public class Tank {
 	}
 	
 	public void updateCurrentGasoline (float newGasolineValue) {
-		
 		currentGasoline = newGasolineValue;
 	}
 }
