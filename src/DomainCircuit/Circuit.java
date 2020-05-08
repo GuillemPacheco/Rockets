@@ -1,12 +1,12 @@
 package DomainCircuit;
 
-public abstract class AbsCircuit {
+public class Circuit {
 	
 	protected String circuitName;
 	protected float distance;
 	protected double time;
 	
-	public AbsCircuit(String circuitName, float distance, double time) throws Exception {
+	public Circuit(String circuitName, float distance, double time) throws Exception {
 		if(circuitName == null || circuitName.isEmpty()) {
 			throw new Exception("The name is not correct");
 		}

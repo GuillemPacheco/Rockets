@@ -1,17 +1,19 @@
 package DomainRocket;
 
-import DomainCircuit.AbsCircuit;
+import java.util.List;
+
+import DomainCircuit.Circuit;
 
 public class Rocket {
 	
 	protected String name;
-	protected AbsCircuit circuit;
-	protected Propeller propeller;
+	protected Circuit circuit;
+	protected List<Propeller> propeller;
 	
-	Rocket(String name,AbsCircuit circuit,Propeller propeller){
+	Rocket(String name,Circuit circuit,List<Propeller> propeller){
 		this.name=name;
 		this.circuit=circuit;
-		this.propeller=propeller;	
+		propeller.addAll(propeller);
 	}
 	
 	public String getName() {

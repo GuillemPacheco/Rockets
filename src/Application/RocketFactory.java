@@ -6,7 +6,7 @@ public class RocketFactory {
 	
 	public static AbsRocket createRocket(int rocketId) throws Exception {
 		if(rocketId==ConstantUtilities.ROCKET) {
-			return new 
+			return new Rocket("Gamma Ray",)
 		}
 		
 	}
