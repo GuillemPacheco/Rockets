@@ -19,6 +19,5 @@ public class Propeller{
 	public void setMaximumSpeed (float newMaximumSpeed) {
 		this.maximumSpeed = newMaximumSpeed;
 	}	
-	
 
 }

@@ -16,7 +16,7 @@ public class Rocket {
 		propeller = new List<Propeller>();
 		propeller.addAll(propeller);
 	}
-	
+
 	public String getName() {
 		return name;
 	}
