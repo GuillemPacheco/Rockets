@@ -13,6 +13,7 @@ public class Rocket {
 	Rocket(String name,Circuit circuit,List<Propeller> propeller){
 		this.name=name;
 		this.circuit=circuit;
+		propeller = new List<Propeller>();
 		propeller.addAll(propeller);
 	}
 	
