@@ -6,13 +6,14 @@ import java.util.List;
 import Domain.Circuit;
 import Domain.Propeller;
 import Domain.Rocket;
+import Domain.Tank;
 import Utilities.ConstantUtilities;
 
 public class RocketFactory {
 	
 	public static Rocket createRocket(int rocketId) throws Exception {
 		if(rocketId==ConstantUtilities.ROCKET) {		
-			return new Rocket("Gamma Ray",new Circuit("RisingLap",900,15),createListPropeller());
+			return new Rocket("Gamma Ray",new Circuit("RisingLap",900,15),createListPropeller(),new Tank(2500));
 		}
 		
 		throw new Exception ("Invalid rocketID");

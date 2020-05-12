@@ -33,6 +33,27 @@ public class Controller {
 			}
 			
 			System.out.println("Starting competition. Circuit length: "+rocket.getCircuitDistance()+ " Max time: "+rocket.getCircuitTime());
-			
+			loopCompetition();
+		}
+		
+		private void loopCompetition() {
+			float distance=0;
+			float time=0;
+			float totalAccelaration=0;
+			float fuelTank=rocket.getRocketCapacityTank();
+			while(time<=rocket.getCircuitTime()) {
+				if(time % 2 == 0 && time !=0) {
+				System.out.println("Current Time : "+ time + " Acceleration: "+ "" + "Speed: "+"" + "Distance: " +distance+ " Circuit: "+ rocket.getCircuitDistance() +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());}
+				time++;
+				if(distance==rocket.getCircuitDistance()) {
+					System.out.println("Current Time : "+ time + " Acceleration: "+ "" + "Speed: "+"" + "Distance: " +distance+ " Circuit: "+ rocket.getCircuitDistance() +" Fuel: "+ "/"+rocket.getRocketCapacityTank());
+					break;
+				}
+			}
+			if(distance==rocket.getCircuitDistance()) {
+				System.out.println("And the winner is: "+rocket.getName()+ " with a time of "+time);
+			}else {
+				System.out.println("There is no winner");
+			}
 		}
 }

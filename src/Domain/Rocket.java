@@ -5,14 +5,16 @@ import java.util.List;
 
 public class Rocket {
 	
+	protected Tank tank;
 	protected String name;
 	protected Circuit circuit;
-	protected List<Propeller> propeller = new ArrayList<Propeller>();
+	protected List<Propeller> propellers = new ArrayList<Propeller>();
 	
-	public Rocket(String name,Circuit circuit,List<Propeller> propeller){
+	public Rocket(String name,Circuit circuit,List<Propeller> propellers,Tank tank){
 		this.name=name;
 		this.circuit=circuit;
-		propeller.addAll(propeller);
+		this.propellers.addAll(propellers);
+		this.tank=tank;
 	}
 
 	public String getName() {
@@ -29,6 +31,18 @@ public class Rocket {
 	
 	public double getCircuitTime() {
 		return circuit.time;
+	}
+	
+	public float getRocketCapacityTank() {
+		return tank.getCapacity();
+	}
+	
+	public float getTotalRocketAcceleration() {
+		float totalRocketAcceleration=0;
+		for(Propeller propeller: propellers) {
+			totalRocketAcceleration+=propeller.getMaximumAcceleration();
+		}
+		return totalRocketAcceleration;
 	}
 	
 	
