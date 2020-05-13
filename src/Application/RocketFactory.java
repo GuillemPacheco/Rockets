@@ -22,12 +22,9 @@ public class RocketFactory {
 	
 	private static List<Propeller> createListPropeller(){
 		List<Propeller> propellers=new ArrayList<Propeller>();
-		Propeller propeller1= new Propeller(50);
-		Propeller propeller2= new Propeller(20);
-		Propeller propeller3= new Propeller(58);
-		propellers.add(propeller1);
-		propellers.add(propeller2);
-		propellers.add(propeller3);
+		propellers.add(new Propeller(50));
+		propellers.add(new Propeller(20));
+		propellers.add(new Propeller(58));
 		return propellers;
 	}
 }

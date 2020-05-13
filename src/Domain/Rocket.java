@@ -37,6 +37,10 @@ public class Rocket {
 		return tank.getCapacity();
 	}
 	
+	public List<Propeller> getPropellers (){
+		return this.propellers;
+	}
+	
 	public float getTotalRocketAcceleration() {
 		float totalRocketAcceleration=0;
 		for(Propeller propeller: propellers) {
