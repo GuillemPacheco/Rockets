@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +41,18 @@ public class Rocket {
 		return this.propellers;
 	}
 	
+	
 	public float getTotalRocketAcceleration() {
 		float totalRocketAcceleration=0;
 		for(Propeller propeller: propellers) {
 			totalRocketAcceleration+=propeller.getMaximumAcceleration();
 		}
 		return totalRocketAcceleration;
+	}
+
+	public Tank getTank() {
+
+		return tank;
 	}
 	
 	

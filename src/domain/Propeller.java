@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 import java.util.List;
 
@@ -17,5 +17,8 @@ public class Propeller{
 	public void setMaximumAcceleration(float newMaximumAcceleration) {
 		this.maximumAcceleration = newMaximumAcceleration;
 	}	
-
+	
+	public float getSpeed (float lastSpeed, float time, float acceleration) {
+		return  (float) (lastSpeed + (time*acceleration));
+	}
 }

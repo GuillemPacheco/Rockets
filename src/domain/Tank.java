@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 public class Tank {
 	
@@ -20,6 +20,10 @@ public class Tank {
 	
 	public void updateCurrentGasoline (float newGasolineValue) {
 		currentGasoline = newGasolineValue;
+	}
+	
+	public float instantaneousConsumption (float speed) {
+		return (float) (0.02 * Math.pow(speed, 2));
 	}
 	
 }

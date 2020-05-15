@@ -1,11 +1,13 @@
-package Application;
+package application;
 
 import java.util.Scanner;
 
-import Domain.Propeller;
-import Domain.Rocket;
+import domain.Circuit;
+import domain.Propeller;
+import domain.Rocket;
+import utilities.ConstantUtilities;
 
-public class Controller {
+public class Main {
 	
 		private static Rocket rocket;
 		static Scanner keyIn = new Scanner(System.in);
@@ -15,17 +17,10 @@ public class Controller {
 			addRocket(rocket);
 		}
 		
-		private void addRocket(Rocket rocket) {
+		public void addRocket(Rocket rocket) {
 			this.rocket=rocket;
 		}
 		
-		Rocket getRockets(){
-			return rocket;
-		}
-		
-		public String printRocket() {
-			return rocket.getName();
-		}
 
 		public void startCompetition() throws Exception {
 			// TODO Auto-generated method stub
@@ -48,24 +43,24 @@ public class Controller {
 			while(time<=rocket.getCircuitTime()) {
 				
 				totalAcceleration = controlMovements(rocket);
-				actualSpeed = getSpeed(actualSpeed, time, totalAcceleration);
-				distance = getDistance(actualSpeed, time, totalAcceleration);
-				fuelTank -= instantaneousConsumption(actualSpeed);
-				if(time % 2 == 0) {
-				System.out.println("Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ rocket.getCircuitDistance() +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
+				actualSpeed = rocket.getPropellers().get(0).getSpeed(actualSpeed, time, totalAcceleration);
+
+				fuelTank -= rocket.getTank().instantaneousConsumption(actualSpeed);
+				if(fuelTank<0) {
+					fuelTank=0;
+					actualSpeed=0;
 				}
-				time++;
-				
-				if (fuelTank<0) {
-					System.out.println("Runned out of fuel.");
-					break;
+				distance = getDistance(actualSpeed, time, totalAcceleration);
+				if(time % 2 == 0 && time !=0) {
+					System.out.println("Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ rocket.getCircuitDistance() +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
 				}
 				if(distance>=rocket.getCircuitDistance()) {
 					System.out.println("Circuit finished with Time : "+ time + " Final Acceleration: "+ totalAcceleration + " Final Speed: "+actualSpeed + " Final Fuel: " + fuelTank + "/" + rocket.getRocketCapacityTank());
 					break;
 				}
+				time++;
 			}
-			if(distance>=rocket.getCircuitDistance() && fuelTank>0) {
+			if(distance>=rocket.getCircuitDistance()) {
 				System.out.println("And the winner is: "+rocket.getName()+ " with a time of "+time);
 			}else {
 				System.out.println("There is no winner");
@@ -89,9 +84,9 @@ public class Controller {
 				if (p.getMaximumAcceleration()>maximumNumber)
 					maximumNumber = p.getMaximumAcceleration();
 			}
-			System.out.println("What is your next acceleration? (Between 0 and " + maximumNumber + ")");
-			float nextacceleration = keyIn.nextFloat();
-			while (nextacceleration<=0 || nextacceleration>maximumNumber) {
+			//Aqui hauria d anar implementació de ia
+			float nextacceleration = 58;
+			while (nextacceleration<0 || nextacceleration>maximumNumber) {
 				System.out.println("Invalid number. Please write again the acceleration. (Between 0 and " + maximumNumber + ")");
 				nextacceleration = keyIn.nextFloat();
 			}
@@ -101,10 +96,14 @@ public class Controller {
 		private float getDistance (float actualSpeed, float time, float acceleration) {
 			return  (float) ((actualSpeed * time) + (1/2 * acceleration) * Math.pow(time, 2));
 		}
-		private float getSpeed (float lastSpeed, float time, float acceleration) {
-			return  (float) (lastSpeed + (time*acceleration));
+		
+		public static void main(String[] args) throws Exception {
+			// TODO Auto-generated method stub
+			Main controller = new Main();
+			controller.createRocket(ConstantUtilities.ROCKET);
+			controller.startCompetition();
 		}
-		private float instantaneousConsumption (float speed) {
-			return (float) (0.02 * Math.pow(speed, 2));
-		}
+
+		
+	
 }
