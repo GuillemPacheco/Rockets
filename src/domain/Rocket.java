@@ -42,18 +42,22 @@ public class Rocket {
 	}
 	
 	
-	public float getTotalRocketAcceleration() {
-		float totalRocketAcceleration=0;
-		for(Propeller propeller: propellers) {
-			totalRocketAcceleration+=propeller.getMaximumAcceleration();
+	public float getTotalAcceleration (float input) {
+		float result = 0;
+		for (Propeller p : this.getPropellers()){
+			if (p.getMaximumAcceleration()>=input)
+				result+=input;
+			else
+				result+=p.getMaximumAcceleration();
 		}
-		return totalRocketAcceleration;
+		return result;
 	}
-
+	
 	public Tank getTank() {
-
 		return tank;
 	}
 	
-	
+	public float getDistance (float actualSpeed, float time, float acceleration) {
+		return  (float) ((actualSpeed * time) + (1/2 * acceleration) * Math.pow(time, 2));
+	}
 }

@@ -22,8 +22,13 @@ public class Tank {
 		currentGasoline = newGasolineValue;
 	}
 	
-	public float instantaneousConsumption (float speed) {
-		return (float) (0.02 * Math.pow(speed, 2));
+	public float instantaneousConsumption (float currentDeposit, float speed) {
+		float instantaneousConsumed = (float) (0.02 * Math.pow(speed, 2));
+		float currentTankSpace = currentDeposit-instantaneousConsumed;
+		if (currentTankSpace>0) {
+			return currentTankSpace;
+		}
+		return 0;
 	}
 	
 }

@@ -15,7 +15,6 @@ public class RocketFactory {
 		if(rocketId==ConstantUtilities.ROCKET) {		
 			return new Rocket("Gamma Ray",new Circuit("RisingLap",900,15),createListPropeller(),new Tank(2500));
 		}
-		
 		throw new Exception ("Invalid rocketID");
 		
 	}
