@@ -2,25 +2,20 @@ package application;
 
 public class Strategy {
 
-	public Strategy() {
-		
-	}
-
 	public static float getNextMovement (int time) {
 		switch (time) {
 		case 0:
-			return 40;
+			return 55;
 		case 1:
-			return 40;
+			return 50;
 		case 2:
-			return 30;
+			return 35;
 		case 3:
 			return 30;
 		case 4:
-			return 20;
-		case 5:
 			return 10;
+		default:
+			return 0;
 		}
-	return 0;
 	}
 }

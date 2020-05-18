@@ -37,8 +37,11 @@ public class Main {
 
 				totalAcceleration = Strategy.getNextMovement(time);
 				actualSpeed = rocket.getPropellers().get(0).getSpeed(actualSpeed, time, totalAcceleration);
-				distance = rocket.getDistance(actualSpeed, time, totalAcceleration, rocket.getCircuitDistance());
 				fuelTank = rocket.getTank().instantaneousConsumption(fuelTank, actualSpeed);
+
+				if (fuelTank>0)
+				distance = rocket.getDistance(actualSpeed, time, totalAcceleration, rocket.getCircuitDistance());
+
 				
 				if(time % 2 == 0 || distance==rocket.getCircuitDistance() || time==rocket.getCircuitTime()) 
 				print("Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ rocket.getCircuitDistance() +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
