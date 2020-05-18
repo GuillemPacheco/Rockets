@@ -57,7 +57,10 @@ public class Rocket {
 		return tank;
 	}
 	
-	public float getDistance (float actualSpeed, float time, float acceleration) {
-		return  (float) ((actualSpeed * time) + (1/2 * acceleration) * Math.pow(time, 2));
+	public float getDistance (float actualSpeed, float time, float acceleration, float maxDistance) {
+		float result = (float) ((actualSpeed * time) + (1/2 * acceleration) * Math.pow(time, 2));
+		if (result>maxDistance)
+			return maxDistance;
+		return result;
 	}
 }

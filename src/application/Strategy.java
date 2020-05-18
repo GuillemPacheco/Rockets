@@ -9,9 +9,9 @@ public class Strategy {
 	public static float getNextMovement (int time) {
 		switch (time) {
 		case 0:
-			return 45;
+			return 58;
 		case 1:
-			return 40;
+			return 58;
 		case 2:
 			return 30;
 		case 3:
@@ -19,8 +19,6 @@ public class Strategy {
 		case 4:
 			return 20;
 		case 5:
-			return 10;
-		case 6:
 			return 10;
 		}
 	return 0;

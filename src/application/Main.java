@@ -27,34 +27,24 @@ public class Main {
 		private void loopCompetition() {
 
 			float actualSpeed = 0;
-			float distance=0;
-			int time=0;
-			float totalAcceleration=0;
-			float fuelTank=rocket.getRocketCapacityTank();
+			float distance = 0;
+			int time = -1;
+			float totalAcceleration = 0;
+			float fuelTank = rocket.getRocketCapacityTank();
 
-			while(time<=rocket.getCircuitTime() && distance<rocket.getCircuitDistance()) {
+			while(time<rocket.getCircuitTime() && fuelTank>0 && distance<rocket.getCircuitDistance()) {
+				time++;
 
 				totalAcceleration = Strategy.getNextMovement(time);
+				actualSpeed = rocket.getPropellers().get(0).getSpeed(actualSpeed, time, totalAcceleration);
+				distance = rocket.getDistance(actualSpeed, time, totalAcceleration, rocket.getCircuitDistance());
 				fuelTank = rocket.getTank().instantaneousConsumption(fuelTank, actualSpeed);
-				if(fuelTank==0) {
-					actualSpeed=0;
-					distance=0;
-				}else {
-					actualSpeed = rocket.getPropellers().get(0).getSpeed(actualSpeed, time, totalAcceleration);
-					distance = rocket.getDistance(actualSpeed, time, totalAcceleration);
-				}
 				
-				
-				if(time % 2 == 0) 
+				if(time % 2 == 0 || distance==rocket.getCircuitDistance() || time==rocket.getCircuitTime()) 
 				print("Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ rocket.getCircuitDistance() +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
-
-				time++;
 			}
-			if(rocket.getCircuitTime() % 2 != 0) {
-				print("Current Time : "+ time++ + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ rocket.getCircuitDistance() +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
-
-			}
-			if (time>rocket.getCircuitTime()) 
+			
+			if (fuelTank==0 || time>=rocket.getCircuitTime()) 
 				print("There is no winner");
 			else
 				print("And the winner is: "+rocket.getName()+ " with a time of "+time);
