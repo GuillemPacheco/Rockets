@@ -1,11 +1,7 @@
 package application;
-
-import domain.Rocket;
 import utilities.ConstantUtilities;
-
-import java.util.List;
-
 import domain.Circuit;
+
 public class Main {
 			
 		public static void main(String[] args) throws Exception {
