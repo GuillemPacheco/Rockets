@@ -10,7 +10,7 @@ public class Rocket {
 	protected Circuit circuit;
 	protected List<Propeller> propellers = new ArrayList<Propeller>();
 	
-	public Rocket(String name,Circuit circuit,List<Propeller> propellers,Tank tank){
+	public Rocket(String name,List<Propeller> propellers,Tank tank){
 		this.name=name;
 		this.circuit=circuit;
 		this.propellers.addAll(propellers);
@@ -20,19 +20,7 @@ public class Rocket {
 	public String getName() {
 		return name;
 	}
-	
-	public String getCircuitName() {
-		return circuit.circuitName;
-	}
-	
-	public float getCircuitDistance() {
-		return circuit.distance;
-	}
-	
-	public double getCircuitTime() {
-		return circuit.time;
-	}
-	
+
 	public float getRocketCapacityTank() {
 		return tank.getCapacity();
 	}
