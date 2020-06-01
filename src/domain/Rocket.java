@@ -7,12 +7,10 @@ public class Rocket {
 	
 	protected Tank tank;
 	protected String name;
-	protected Circuit circuit;
 	protected List<Propeller> propellers = new ArrayList<Propeller>();
 	
 	public Rocket(String name,List<Propeller> propellers,Tank tank){
 		this.name=name;
-		this.circuit=circuit;
 		this.propellers.addAll(propellers);
 		this.tank=tank;
 	}
