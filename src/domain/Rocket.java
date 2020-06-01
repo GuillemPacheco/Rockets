@@ -9,7 +9,13 @@ public class Rocket {
 	protected String name;
 	protected List<Propeller> propellers = new ArrayList<Propeller>();
 	
-	public Rocket(String name,List<Propeller> propellers,Tank tank){
+	public Rocket(String name,List<Propeller> propellers,Tank tank) throws Exception{
+		if(name==null) {
+			throw new Exception ("Rocket name is null");
+		}
+		if(tank==null) {
+			throw new Exception ("Rocket tank is null");
+		}
 		this.name=name;
 		this.propellers.addAll(propellers);
 		this.tank=tank;
@@ -28,7 +34,10 @@ public class Rocket {
 	}
 	
 	
-	public float getTotalAcceleration (float input) {
+	public float getTotalAcceleration (float input) throws Exception {
+		if(input<0) {
+			throw new Exception ("The input is lower than 0");
+		}
 		float result = 0;
 		for (Propeller p : this.getPropellers()){
 			if (p.getMaximumAcceleration()>=input)

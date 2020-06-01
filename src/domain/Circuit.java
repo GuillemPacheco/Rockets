@@ -10,7 +10,7 @@ public class Circuit {
 	public static float circuitLength;
 	public static double circuitTime;
 	
-	public static List<Rocket> rockets = new ArrayList<Rocket>();;
+	public List<Rocket> rockets = new ArrayList<Rocket>();;
 
 	public static void print (String string) {
 		System.out.println(string);
@@ -26,7 +26,7 @@ public class Circuit {
 		if(time<=0) {
 			throw new Exception("The time cannot under or equal 0");
 		}
-		circuitName=circuitName;
+		this.circuitName=circuitName;
 		circuitLength=distance;
 		circuitTime=time;
 	}
@@ -35,7 +35,7 @@ public class Circuit {
 		rockets.add(rocket);
 	}
 
-	public static void loopCompetition() {
+	public void loopCompetition() throws Exception {
 		
 		//List<String> resultNames = new ArrayList<String>();;
 		//List<Integer> resultTimes = new ArrayList<Integer>(rockets.size());
@@ -44,23 +44,26 @@ public class Circuit {
 			
 			float actualSpeed = 0;
 			float distance = 0;
-			int time = -1;
+			int time = 0;
 			float totalAcceleration = 0;
 			float fuelTank = rocket.getRocketCapacityTank();
 	
 			while(time<circuitTime && fuelTank>0 && distance<circuitLength) {
-				time++;
 	
 				totalAcceleration = Strategy.getNextMovement(time);
 				actualSpeed = rocket.getPropellers().get(0).getSpeed(actualSpeed, time, totalAcceleration);
 				fuelTank = rocket.getTank().instantaneousConsumption(fuelTank, actualSpeed);
 	
 				if (fuelTank>0)
-				distance = rocket.getDistance(actualSpeed, time, totalAcceleration, circuitLength);
+					distance = rocket.getDistance(actualSpeed, time, totalAcceleration, circuitLength);
 	
+				if(time % 2 == 0) 
+					print("Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ circuitLength +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
 				
-				if(time % 2 == 0 || distance==circuitLength || time==circuitTime) 
-				print("Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ circuitLength +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
+				if(distance==circuitLength || time==circuitTime)
+					break;
+				
+				time++;
 			}
 			if (fuelTank==0 || time>=circuitTime)
 				results.add(new result(rocket.getName(), 0));
