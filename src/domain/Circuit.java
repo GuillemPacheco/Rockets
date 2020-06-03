@@ -12,9 +12,6 @@ public class Circuit {
 	
 	public List<Rocket> rockets = new ArrayList<Rocket>();;
 
-	public static void print (String string) {
-		System.out.println(string);
-	}
 	
 	public Circuit(String circuitName, float distance, double time) throws Exception {
 		if(circuitName == null || circuitName.isEmpty()) {
@@ -35,13 +32,12 @@ public class Circuit {
 		rockets.add(rocket);
 	}
 
-	public void loopCompetition() throws Exception {
-		
-		//List<String> resultNames = new ArrayList<String>();;
-		//List<Integer> resultTimes = new ArrayList<Integer>(rockets.size());
+	public String loopCompetition() throws Exception {
+
 		List<result> results = new ArrayList<result>();		
+		String resultString = "";
 		for (Rocket rocket : rockets) {
-			
+			resultString+="\n"+"---Rocket " + rocket.getName() + "---";
 			float actualSpeed = 0;
 			float distance = 0;
 			int time = 0;
@@ -50,7 +46,7 @@ public class Circuit {
 	
 			while(time<circuitTime && fuelTank>0 && distance<circuitLength) {
 	
-				totalAcceleration = Strategy.getNextMovement(time);
+				totalAcceleration = rocket.getTotalAcceleration(Strategy.getNextMovement(time));
 				actualSpeed = rocket.getPropellers().get(0).getSpeed(actualSpeed, time, totalAcceleration);
 				fuelTank = rocket.getTank().instantaneousConsumption(fuelTank, actualSpeed);
 	
@@ -58,7 +54,7 @@ public class Circuit {
 					distance = rocket.getDistance(actualSpeed, time, totalAcceleration, circuitLength);
 	
 				if(time % 2 == 0) 
-					print("Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ circuitLength +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank());
+					resultString+="\n"+"Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ circuitLength +" Fuel: "+ fuelTank+"/"+rocket.getRocketCapacityTank();
 				
 				if(distance==circuitLength || time==circuitTime)
 					break;
@@ -72,9 +68,10 @@ public class Circuit {
 		}
 		
 		results = result.sortList(results);
-		print(result.isThereWinner(results) + "Results of the race:");
+		resultString+=result.isThereWinner(results) + "Results of the race:";
 		for (int i = 0; i< results.size(); i++)
-			print((i+1) + ". " + results.get(i).getName() + " with a time of: " +  results.get(0).getTimeString());
+			resultString+="\n"+(i+1) + ". " + results.get(i).getName() + " with a time of: " +  results.get(i).getTimeString();
+		return resultString;
 	}
 	
 }
