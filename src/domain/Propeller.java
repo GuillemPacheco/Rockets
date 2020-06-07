@@ -5,9 +5,8 @@ public class Propeller{
 	protected float maximumAcceleration;
 	
 	public Propeller (float maximumAcceleration) throws Exception {
-		if(maximumAcceleration<0) {
+		if(maximumAcceleration<0)
 			throw new Exception ("The acceleration can be negative");
-		}
 		this.maximumAcceleration = maximumAcceleration;
 	}
 	
@@ -16,13 +15,8 @@ public class Propeller{
 	}
 	
 	public void setMaximumAcceleration(float newMaximumAcceleration) throws Exception {
-		if(newMaximumAcceleration<0) {
+		if(newMaximumAcceleration<0)
 			throw new Exception ("The acceleration can be negative");
-		}
 		this.maximumAcceleration = newMaximumAcceleration;
 	}	
-	
-	public float getSpeed (float lastSpeed, float time, float acceleration) {
-		return  (float) (lastSpeed + (time*acceleration));
-	}
 }

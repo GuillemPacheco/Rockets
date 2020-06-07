@@ -8,15 +8,13 @@ public class result{
     private String name;
     private int time;
     
-    public result (String name, int time) {
-    	this.name = name;
+    public result (Rocket r, int time) {
+    	this.name = r.getName();
     	this.time = time;
     }
-    
     public int getTime() {
     	return time;
     }
-    
     public String getName() {
     	return name;
     }
@@ -30,9 +28,8 @@ public class result{
     
     public static String isThereWinner (List<result> input) {
     	for (result r : input) {
-    		if (r.getTime()>0) {
+    		if (r.getTime()>0)
     			return "There is a winner. ";
-    		}
     	}
     	return "There is no winner. ";
     }

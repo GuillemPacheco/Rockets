@@ -16,7 +16,7 @@ public class Main {
 			circuit.addRocket(createRocket("Gamma Ray"));
 			circuit.addRocket(createRocket("Beast"));
 			
-			// aqui podem afegir tants rockets com volguem
+			// We can add as many rockets as we want
 			startCompetition(circuit);
 		}
 
@@ -28,20 +28,21 @@ public class Main {
 			System.out.println(circuit.loopCompetition());
 		}
 		
-		private static List<Propeller> createListPropeller(int val1, int val2, int val3) throws Exception{
+		private static List<Propeller> createListPropeller(int[] maxAccelerations) throws Exception{
 			List<Propeller> propellers=new ArrayList<Propeller>();
-			propellers.add(new Propeller(val1));
-			propellers.add(new Propeller(val2));
-			propellers.add(new Propeller(val3));
+			for (int acceleration : maxAccelerations)
+				propellers.add(new Propeller(acceleration));
 			return propellers;
 		}
 		
 		public static Rocket createRocket(String nameRocket) throws Exception {
 			if(nameRocket.equalsIgnoreCase("Gamma Ray")) {		
-				return new Rocket("Gamma Ray",createListPropeller(50,20,58),new Tank(2500));
+				int[] maxAccelerations = {50,20,58};
+				return new Rocket("Gamma Ray",createListPropeller(maxAccelerations),new Tank(2500));
 			}
 			else if(nameRocket.equalsIgnoreCase("Beast")) {
-				return new Rocket("Beast",createListPropeller(3,3,7),new Tank(3000));
+				int[] maxAccelerations = {3,3,7};
+				return new Rocket("Beast",createListPropeller(maxAccelerations),new Tank(3000));
 			}
 			throw new Exception ("Invalid nameRocket");
 			
