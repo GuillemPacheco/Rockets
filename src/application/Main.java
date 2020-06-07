@@ -29,6 +29,9 @@ public class Main {
 		}
 		
 		private static List<Propeller> createListPropeller(int[] maxAccelerations) throws Exception{
+			if(maxAccelerations.length==0) {
+				throw new Exception("The propellers are null");
+			}
 			List<Propeller> propellers=new ArrayList<Propeller>();
 			for (int acceleration : maxAccelerations)
 				propellers.add(new Propeller(acceleration));
