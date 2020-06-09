@@ -28,6 +28,12 @@ public class Circuit {
 			throw new Exception ("The rocket cannot be null.");
 		rockets.add(rocket);
 	}
+	
+	public void addRocket(ArrayList<Rocket> rocket) throws Exception {
+		if (rocket == null)
+			throw new Exception ("The rocket cannot be null.");
+		rockets.addAll(rocket);
+	}
 
 	public String loopCompetition() throws Exception {
 		List<result> results = new ArrayList<result>();		
