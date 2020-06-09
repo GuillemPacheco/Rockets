@@ -30,18 +30,15 @@ public class Main {
 		public static void updateResult(String id,double time, String rocket) throws Exception{
 			ResultDto result = new ResultDto(time,rocket);
 			result = controller.updateResult(id,result);
-			System.out.println(result);
 		}
 		
 		public static void getResult(String id) throws Exception{
 			ResultDto resultdto= controller.getResult(id);
-			System.out.println(resultdto);
 		}
 		
 		public static ResultDto createResult(Result result) throws Exception {
 			ResultDto resultdto = new ResultDto(result);
 			resultdto = controller.createResult(resultdto);
-			System.out.println(resultdto);
 			return resultdto;
 		}
 		

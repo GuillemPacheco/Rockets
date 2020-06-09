@@ -29,7 +29,7 @@ public class ResultRepository {
 		
 		ConnectionBBDD connection = ConnectionRepository.getConnection();
 		try {
-			String sql = "SELECT * FROM RESULTS WHERE ID=?";
+			String sql = "SELECT * FROM RESULT WHERE CIRCUITNAME=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.clearParameters();
 			preparedStatement.setString(1, resultID);
