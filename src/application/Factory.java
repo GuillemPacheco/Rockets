@@ -7,7 +7,7 @@ import domain.Circuit;
 import domain.Propeller;
 import domain.Rocket;
 import domain.Tank;
-import utilities.ConstantUtilities;
+
 
 
 public class Factory {
@@ -28,15 +28,16 @@ public class Factory {
 	public static Circuit selectRandomCircuit() throws Exception {
 		Random random=new Random();
 		int randomNumber=random.nextInt(4)+1;
+		System.out.println(randomNumber);
 		switch(randomNumber) {
 			case(1):
 				return new Circuit("MadMax",1300,22);
 			case(2):
-				return new Circuit("MadMax",1300,22);
+				return new Circuit("SpeedTrack",800,10);
 			case(3):
-				return new Circuit("MadMax",1300,22);
+				return new Circuit("FreeWorld",1200,18);
 			case(4):
-				return new Circuit("MadMax",1300,22);
+				return new Circuit("RisingLap",900,15);
 			default:
 				throw new Exception("Can't select a random circuit");
 		}

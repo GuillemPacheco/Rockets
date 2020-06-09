@@ -8,7 +8,7 @@ public class Controller {
 	
 	public void createCircuit() throws Exception {
 		this.setCircuit(Factory.selectRandomCircuit());
-		circuit.addRocket(Factory.createRockets());
+		this.circuit.addRocket(Factory.createRockets());
 	}
 
 	public Circuit getCircuit() {
@@ -18,6 +18,8 @@ public class Controller {
 	public void setCircuit(Circuit circuit) {
 		this.circuit = circuit;
 	}
+	
+	
 	
 	
 }

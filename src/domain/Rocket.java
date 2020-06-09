@@ -1,5 +1,6 @@
 package domain;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,9 @@ public class Rocket {
 	// Constructors
 	public Rocket(String name,List<Propeller> propellers,Tank tank) throws Exception{
 		if(name==null)
-			throw new Exception ("Rocket name is null");
+			throw new InvalidParameterException ("Rocket name is null");
 		if(tank==null)
-			throw new Exception ("Rocket tank is null");
+			throw new InvalidParameterException ("Rocket tank is null");
 		this.name=name;
 		this.propellers.addAll(propellers);
 		this.tank=tank;
@@ -74,12 +75,8 @@ public class Rocket {
 			return maxDistance;
 		return result;
 	}
-	public result getFinalResult (double circuitTime) {
-		if (getFuelTank()==0 || time>=circuitTime)
-			return new result(this, 0);
-		else
-			return new result(this, time-1);
-	}
+	
+
 	
 	// Other methods
 	public void resetRocket () {
