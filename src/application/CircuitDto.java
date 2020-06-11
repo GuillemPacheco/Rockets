@@ -10,9 +10,14 @@ public class CircuitDto {
 	public static float circuitLength;
 	public static double circuitTime;
 	
+	public CircuitDto(float distance, double time) {
+		circuitLength=distance;
+		circuitTime=time;
+	}
+	
 	public CircuitDto(Circuit circuit) throws Exception {
 		
-		if(circuitName == null || circuitName.isEmpty())
+		if(circuitName == null || circuitName.equals(""))
 			throw new InvalidParameterException("The name is not correct");
 		if(circuit.getCircuitLength()<=0)
 			throw new InvalidParameterException("The distance cannot under or equal 0");
