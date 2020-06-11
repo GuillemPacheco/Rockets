@@ -1,28 +1,28 @@
 package domain;
 
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.util.List;
 
+import application.Controller;
 import application.ResultDto;
 import utilities.InvalidParamException;
-import view.Main;
+
 
 public class Result{
     private String rocketName;
     private String circuitName;
-    private double time;
+    private int time;
     
     public Result() {
     	
     }
     
-    public Result (String circuitName, double time, String rocketName) throws Exception {
+    public Result (String circuitName, int time, String rocketName) throws Exception {
 		if(circuitName == null || circuitName.equals(""))
 			throw new Exception("The circuit name is not correct");
 		if(rocketName == null || rocketName.equals(""))
 			throw new Exception("The rocket name is not correct");
-		if(time<0)
+		if(time<-1)
 			throw new Exception("The time cannot under or equal 0");
     	this.rocketName = rocketName;
     	this.time = time;
@@ -35,7 +35,7 @@ public class Result{
     	this.time = result.getTime();
     	this.circuitName = result.getCircuitName();
     }
-    public double getTime() {
+    public int getTime() {
     	return time;
     }
     
@@ -48,10 +48,10 @@ public class Result{
 	}
 
 	public String getTimeString () {
-    	if (time==0)
+    	if (time==-1)
     		return "unfinished";
     	else
-    		return Double.toString(time);
+    		return Integer.toString(time);
     }
     
     public static String isThereWinner (List<Result> input) {
@@ -67,6 +67,6 @@ public class Result{
 		this.rocketName = resultdto.getRocketName();
     	this.time = resultdto.getTime();
     	this.circuitName = resultdto.getCircuitName();
-		Main.updateResult(rocketName,time,circuitName);
+		Controller.updateResult(rocketName,time,circuitName);
 	}
 }

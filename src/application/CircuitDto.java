@@ -8,21 +8,17 @@ public class CircuitDto {
 	
 	protected String circuitName;
 	public static float circuitLength;
-	public static double circuitTime;
+	public static int circuitTime;
 	
-	public CircuitDto(float distance, double time) {
+	public CircuitDto(float distance, int time) {
 		circuitLength=distance;
 		circuitTime=time;
 	}
 	
 	public CircuitDto(Circuit circuit) throws Exception {
-		
-		if(circuitName == null || circuitName.equals(""))
-			throw new InvalidParameterException("The name is not correct");
-		if(circuit.getCircuitLength()<=0)
-			throw new InvalidParameterException("The distance cannot under or equal 0");
-		if(circuit.getCircuitTime()<=0)
-			throw new InvalidParameterException("The time cannot under or equal 0");
+		if(circuit==null) {
+			throw new Exception();
+		}
 		this.circuitName=circuit.getCircuitName();
 		circuitLength=circuit.getCircuitLength();
 		circuitTime=circuit.getCircuitTime();
@@ -42,7 +38,7 @@ public class CircuitDto {
 	}
 
 
-	public double getCircuitTime() throws InvalidParameterException{
+	public int getCircuitTime() throws InvalidParameterException{
 		if(circuitTime<0)
 			throw new InvalidParameterException();
 		return circuitTime;

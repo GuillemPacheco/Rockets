@@ -28,7 +28,6 @@ public class Factory {
 	public static Circuit selectRandomCircuit() throws Exception {
 		Random random=new Random();
 		int randomNumber=random.nextInt(4)+1;
-		System.out.println(randomNumber);
 		switch(randomNumber) {
 			case(1):
 				return new Circuit("MadMax",1300,22);

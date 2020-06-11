@@ -7,10 +7,10 @@ public class ResultDto {
 	
     private String rocketName;
 	private String circuitName;
-    private double time;
+    private int time;
     
     
-    public ResultDto ( double time,String r) throws Exception {
+    public ResultDto ( int time,String r) throws Exception {
      	this.rocketName = r;
      	this.time = time;
      }
@@ -36,7 +36,7 @@ public class ResultDto {
 	}
 
 
-	public double getTime() {
+	public int getTime() {
 		return time;
 	}
 

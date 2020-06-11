@@ -1,6 +1,6 @@
 package domain;
 
-import java.security.InvalidParameterException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,17 +14,17 @@ import domain.Result;
 import utilities.InvalidParamException;
 public class Circuit {
 
-	protected String circuitName;
-	public static float circuitLength;
-	public static double circuitTime;
+	private String circuitName;
+	private static float circuitLength;
+	private static int circuitTime;
 	
-	public List<Rocket> rockets = new ArrayList<Rocket>();
+	private List<Rocket> rockets = new ArrayList<Rocket>();
 	
 	public Circuit() {
 		
 	}
 
-	public Circuit(String circuitName, float distance, double time) throws Exception {
+	public Circuit(String circuitName, float distance, int time) throws Exception {
 		if(circuitName == null || circuitName.equals(""))
 			throw new Exception("The name is not correct");
 		if(distance<=0)
@@ -53,7 +53,7 @@ public class Circuit {
 	}
 
 
-	public  double getCircuitTime() {
+	public  int getCircuitTime() {
 		return circuitTime;
 	}
 
@@ -71,7 +71,7 @@ public class Circuit {
 	
 	public void addRocket(ArrayList<Rocket> rocket) throws Exception {
 		if (rocket == null)
-			throw new Exception ("The rocket cannot be null.");
+			throw new Exception ("The rockets cannot be null.");
 		rockets.addAll(rocket);
 	}
 
@@ -81,7 +81,7 @@ public class Circuit {
 		for (Rocket rocket : rockets) {
 			resultString+="\n"+"---Rocket " + rocket.getName() + "---";
 			rocket.resetRocket();
-			while(rocket.getTime()<circuitTime && rocket.getFuelTank()>0 && rocket.getDistance()<circuitLength)
+			while(rocket.getTime()<circuitTime && rocket.getTank().getCurrentGasoline()>0 && rocket.getDistance()<circuitLength)
 				resultString+=rocket.updateValues(circuitLength);
 			results.add(getFinalResult(rocket));
 		}
@@ -99,7 +99,13 @@ public class Circuit {
     private static List<Result> sortList (List<Result> input) {
 		Collections.sort(input, new Comparator<Result>() {
 		    public int compare(Result left, Result right)  {
-		        return (int)right.getTime() - (int)left.getTime();
+		    	if(left.getTime()<0) {
+		    		return (int)right.getTime();
+		    	}
+		    	else if((right.getTime()<0)) 
+		    		return (int)right.getTime();
+
+		        return (int)left.getTime() - (int)right.getTime();
 		    }
 		});
 		return input;
@@ -116,9 +122,9 @@ public class Circuit {
 	}
 	
 	public Result getFinalResult (Rocket rocket) throws Exception {
-		if (rocket.getFuelTank()==0 || rocket.getTime()>=circuitTime)
-			return new Result(this.getCircuitName(), 0, rocket.getName());
+		if (rocket.getTank().getCurrentGasoline()==0 || rocket.getTime()>=circuitTime)
+			return new Result(this.getCircuitName(), -1, rocket.getName());//rocket has unfinished the race
 		else
-			return new Result(this.circuitName, rocket.getTime()-1,rocket.getName());
+			return new Result(this.circuitName, rocket.getTime(),rocket.getName());
 	}
 }

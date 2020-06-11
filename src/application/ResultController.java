@@ -13,7 +13,6 @@ public class ResultController {
 	
 	public ResultDto updateResult(String resultId, ResultDto resultdto) throws Exception{
 		Result result = ResultRepository.getResult(resultId);
-		result.updateResult(resultdto);
 		ResultRepository.updateResult(result);
 		return new ResultDto(result);
 	}

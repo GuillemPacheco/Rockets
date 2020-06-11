@@ -37,7 +37,7 @@ public class ResultRepository {
 			
 			if(rs.next()) {
 				String circuitName = rs.getString("CIRCUITNAME");
-				Double time = rs.getDouble("TIME");
+				int time = rs.getInt("TIME");
 				String rocketName = rs.getString("ROCKETNAME");
 				return new Result(circuitName,time,rocketName);
 			}
@@ -56,7 +56,7 @@ public class ResultRepository {
 			PreparedStatement pst= connection.prepareStatement(sql);
 			pst.clearParameters();
 			pst.setString(1, result.getCircuitName());
-			pst.setDouble(2, result.getTime());
+			pst.setInt(2, result.getTime());
 			pst.setString(3, result.getRocketName());
 			
 			if(pst.executeUpdate() != 1) {
