@@ -2,6 +2,7 @@ package application;
 
 import domain.Circuit;
 import domain.Result;
+import domain.Rocket;
 
 public class Controller {
 	
@@ -11,14 +12,16 @@ public class Controller {
 	public void createCircuit() throws Exception {
 		this.circuit = (Factory.selectRandomCircuit());
 		this.circuit.addRocket(Factory.createRockets());
+		for (Rocket r : this.circuit.getRockets())
+			r.strategyAccelerations = Strategy.createStrategy(r, this.circuit);
 	}
 	
 	public  String startCompetition() throws Exception {
 		String startCompetition="";
-		if(circuit.getRockets().size()==0) {
+		if(circuit.getRockets().size()==0)
 			throw new Exception("There are 0 created rockets");
-		}
-		startCompetition+="Starting competition.Circuit name:"+circuit.getCircuitName()+" Circuit length: "+circuit.getCircuitLength()+ " Max time: "+circuit.getCircuitTime();
+		
+		startCompetition+="Circuit name: "+circuit.getCircuitName()+", Circuit length: "+circuit.getCircuitLength()+ ", Max time: "+circuit.getCircuitTime();
 		startCompetition+=circuit.loopCompetition();
 		return startCompetition;
 	}
@@ -26,7 +29,6 @@ public class Controller {
 	public Circuit getCircuit() {
 		return circuit;
 	}
-
 
 	public static void updateResult(String id,int time, String rocket) throws Exception{
 		ResultDto result = new ResultDto(time,rocket);
@@ -42,8 +44,4 @@ public class Controller {
 		resultdto = controller.createResult(resultdto);
 		return resultdto;
 	}
-	
-	
-	
-	
 }

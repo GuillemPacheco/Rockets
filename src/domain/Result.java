@@ -1,22 +1,15 @@
 package domain;
-
-
 import java.util.List;
 
 import application.Controller;
 import application.ResultDto;
 import utilities.InvalidParamException;
 
-
 public class Result{
     private String rocketName;
     private String circuitName;
     private int time;
-    
-    public Result() {
-    	
-    }
-    
+
     public Result (String circuitName, int time, String rocketName) throws Exception {
 		if(circuitName == null || circuitName.equals(""))
 			throw new Exception("The circuit name is not correct");
@@ -61,7 +54,6 @@ public class Result{
     	}
     	return "There is no winner. ";
     }
-    
 
 	public void updateResult(ResultDto resultdto) throws Exception {
 		this.rocketName = resultdto.getRocketName();

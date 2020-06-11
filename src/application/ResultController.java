@@ -1,5 +1,4 @@
 package application;
-
 import domain.Result;
 import persistence.ResultRepository;
 

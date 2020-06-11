@@ -1,14 +1,11 @@
 package application;
-
 import domain.Result;
-
 
 public class ResultDto {
 	
     private String rocketName;
 	private String circuitName;
     private int time;
-    
     
     public ResultDto ( int time,String r) throws Exception {
      	this.rocketName = r;
@@ -34,7 +31,6 @@ public class ResultDto {
 	public String getCircuitName() {
 		return circuitName;
 	}
-
 
 	public int getTime() {
 		return time;

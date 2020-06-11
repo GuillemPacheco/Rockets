@@ -1,6 +1,4 @@
 package domain;
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,6 +10,7 @@ import application.ResultController;
 import application.ResultDto;
 import domain.Result;
 import utilities.InvalidParamException;
+
 public class Circuit {
 
 	private String circuitName;
@@ -19,10 +18,6 @@ public class Circuit {
 	private static int circuitTime;
 	
 	private List<Rocket> rockets = new ArrayList<Rocket>();
-	
-	public Circuit() {
-		
-	}
 
 	public Circuit(String circuitName, float distance, int time) throws Exception {
 		if(circuitName == null || circuitName.equals(""))
@@ -47,21 +42,17 @@ public class Circuit {
 		return circuitName;
 	}
 
-
 	public float getCircuitLength() {
 		return circuitLength;
 	}
-
 
 	public  int getCircuitTime() {
 		return circuitTime;
 	}
 
-
 	public List<Rocket> getRockets() {
 		return rockets;
 	}
-
 
 	public void addRocket(Rocket rocket) throws Exception {
 		if (rocket == null)
@@ -110,7 +101,6 @@ public class Circuit {
 		});
 		return input;
     }
-	
 	
 	public String getResults(List<Result> results) {
 		String resultString = "";

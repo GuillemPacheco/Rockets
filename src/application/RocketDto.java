@@ -18,7 +18,6 @@ public class RocketDto {
 	private int time;
 	private float totalAcceleration;
 	
-	
 	public RocketDto(Rocket rocket) throws Exception{
 		if(rocket==null)
 			throw new InvalidParameterException("The name is not correct");
@@ -54,7 +53,6 @@ public class RocketDto {
 	public float getTotalAcceleration() {
 		return totalAcceleration;
 	}
-
 
 	public String getName() {
 		return this.name;

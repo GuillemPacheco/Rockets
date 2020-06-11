@@ -16,9 +16,8 @@ public class CircuitDto {
 	}
 	
 	public CircuitDto(Circuit circuit) throws Exception {
-		if(circuit==null) {
+		if(circuit==null)
 			throw new Exception();
-		}
 		this.circuitName=circuit.getCircuitName();
 		circuitLength=circuit.getCircuitLength();
 		circuitTime=circuit.getCircuitTime();

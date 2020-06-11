@@ -20,9 +20,8 @@ public class ResultRepository {
 		pst.setDouble(2, result.getTime());
 		pst.setString(3, result.getRocketName());
 		
-		if(pst.executeUpdate() != 1) {
+		if(pst.executeUpdate() != 1)
 			throw new InvalidParamException();
-		}
 	}
 	
 	public static Result getResult(String resultID) throws Exception {
@@ -59,9 +58,8 @@ public class ResultRepository {
 			pst.setInt(2, result.getTime());
 			pst.setString(3, result.getRocketName());
 			
-			if(pst.executeUpdate() != 1) {
+			if(pst.executeUpdate() != 1)
 				throw new InvalidParamException();
-			}
 		
 		}catch (SQLException e) {
 			e.printStackTrace();

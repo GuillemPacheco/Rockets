@@ -15,8 +15,7 @@ public class Rocket {
 	private float distance;
 	private int time;
 	private float totalAcceleration;
-
-	
+	public List<Integer> strategyAccelerations = new ArrayList<Integer>();
 	
 	// Constructors
 	public Rocket(String name,List<Propeller> propellers,Tank tank) throws Exception{
@@ -78,28 +77,35 @@ public class Rocket {
 		return result;
 	}
 	
-
-	
 	// Other methods
-	public void resetRocket () {
+	public void resetRocket () throws Exception {
+		tank.currentGasoline = tank.getCapacity();
 		actualSpeed = 0;
 		distance = 0;
-		time = -1;
+		time = 0;
 		totalAcceleration = 0;
-
 	}
 	
 	public String updateValues (float circuitLength) throws Exception {
-		totalAcceleration = getTotalAcceleration(Strategy.getNextMovement(time)); // TO GET THE MAXIMUM ACCELERATION OF THE PROPELLERS
+		totalAcceleration = getTotalAcceleration(strategyAccelerations.get(time)); // TO GET THE MAXIMUM ACCELERATION OF THE PROPELLERS
 		actualSpeed = getSpeed(actualSpeed, time, totalAcceleration);
 		tank.updateCurrentGasoline(tank.instantaneousConsumption(tank.currentGasoline, actualSpeed));
 		time++;
 		if (tank.currentGasoline>0)
 			distance = getDistance(actualSpeed, time, totalAcceleration, circuitLength);
-		if(time % 2 == 0) 
+		if(time % 2 == 0 || distance == circuitLength || tank.currentGasoline == 0) 
 			return "\n"+"Current Time : "+ time + " Acceleration: "+ totalAcceleration + " Speed: "+ actualSpeed+ " Distance: " +distance+ " Circuit: "+ circuitLength +" Fuel: "+ tank.currentGasoline+"/" +getRocketCapacityTank();
 		return "";
 	}
+	
+	public void updateValues (float circuitLength, List<Integer> strategy) throws Exception {
+		totalAcceleration = getTotalAcceleration(strategy.get(time)); // TO GET THE MAXIMUM ACCELERATION OF THE PROPELLERS
+		actualSpeed = getSpeed(actualSpeed, time, totalAcceleration);
+		tank.updateCurrentGasoline(tank.instantaneousConsumption(tank.currentGasoline, actualSpeed));
+		time++;
 
+		if (tank.currentGasoline>0)
+			distance = getDistance(actualSpeed, time, totalAcceleration, circuitLength);
+}
 
 }
