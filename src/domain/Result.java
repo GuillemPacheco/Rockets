@@ -1,7 +1,7 @@
 package domain;
 import java.util.List;
 
-import application.Controller;
+import application.resController;
 import application.ResultDto;
 import utilities.InvalidParamException;
 
@@ -59,6 +59,6 @@ public class Result{
 		this.rocketName = resultdto.getRocketName();
     	this.time = resultdto.getTime();
     	this.circuitName = resultdto.getCircuitName();
-		Controller.updateResult(rocketName,time,circuitName);
+		resController.updateResult(rocketName,time,circuitName);
 	}
 }

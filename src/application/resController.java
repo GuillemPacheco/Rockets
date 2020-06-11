@@ -4,7 +4,7 @@ import domain.Circuit;
 import domain.Result;
 import domain.Rocket;
 
-public class Controller {
+public class resController {
 	
 	private  Circuit circuit;
 	private static ResultController controller = new ResultController();

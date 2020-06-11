@@ -1,5 +1,5 @@
 package view;
-import application.Controller;
+import application.resController;
 
 
 public class Main {
@@ -9,7 +9,7 @@ public class Main {
 		public static void main(String[] args) throws Exception {	
 			System.out.println("Initializing Rockets... This may take a while... (Generating around 200 Milion possible combinations)");
 			updateProgress();
-			Controller controller=new Controller();
+			resController controller=new resController();
 			controller.createCircuit();
 			System.out.println(controller.startCompetition());
 		}    
