@@ -1,23 +1,30 @@
 package view;
 
 import application.RaceController;
-import application.IObserver;
+import utilities.IObserver;
 
 
-public class Main implements IObserver{
+public class Main{
     
 	private static int loadingProgress = 0;
 	
 		public static void main(String[] args) throws Exception {	
 			System.out.println("Initializing Rockets... This may take a while... (Generating around 200 Milion possible combinations)");
 			RaceController controller=new RaceController();
-	        Main responder = new Main();
-	        controller.setListener(responder);
-			controller.createCircuit();
+			updateProgressBar();
+			controller.createCircuit(new IObserver() {
+
+				@Override
+				public void updateProgressBar() {
+					// TODO Auto-generated method stub
+					Main.updateProgressBar();
+				}
+	        	
+	        });
 			System.out.println(controller.startCompetition());
 		}   
 		
-		public void updateProgressBar () {
+		public static void updateProgressBar () {
 			loadingProgress++;
 			String ldStr = "";
 			switch (loadingProgress) {

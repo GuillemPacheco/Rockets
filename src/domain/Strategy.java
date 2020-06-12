@@ -2,14 +2,15 @@ package domain;
 
 import java.util.List;
 
-import application.RaceController;
+import utilities.IObserver;
+import utilities.ISubject;
 
 import java.util.ArrayList;
 
-import view.Main;
 
-public class Strategy {
-
+public class Strategy implements ISubject{
+	
+	private static IObserver listener;
 	List<Integer> bestStrategy = new ArrayList<Integer>();
 	int bestTime = 999;
 	
@@ -45,11 +46,22 @@ public class Strategy {
 		
 		return a;
 	}
-	public Strategy (Rocket r, Circuit c) throws Exception{
+	
+	public Strategy (Rocket r, Circuit c, IObserver observer) throws Exception{
 		bestTime = 999;
         int arr[] = getArray(11,5);
         generateCombinations(arr.length,arr, arr.length, r,c); 
-        RaceController.updateBar();
+        setListener(observer);
+        updateBar();
+	}
+	
+	public static void updateBar() {
+        listener.updateProgressBar();
+	}
+
+
+	public void setListener(IObserver ob) {
+	    listener = ob;
 	}
 	
 	public int getTimeToComplete (Rocket r, Circuit c, List<Integer> strategy) throws Exception {

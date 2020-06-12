@@ -6,27 +6,20 @@ import domain.Circuit;
 import domain.Result;
 import domain.Rocket;
 import domain.Strategy;
+import utilities.IObserver;
 
-public class RaceController  {
+public class RaceController{
 	
 	private  Circuit circuit;
 	private static ResultController controller = new ResultController();
-	private static IObserver listener;
-
-	public void setListener(IObserver ob) {
-	    listener = ob;
-	}
 	
-	public static void updateBar() {
-        listener.updateProgressBar();
-	}
+
 	 
-	public void createCircuit() throws Exception {
-		updateBar();
+	public void createCircuit(IObserver observer) throws Exception {
 		this.circuit = (Factory.selectRandomCircuit());
 		this.circuit.addRocket(Factory.createRockets());
 		for (Rocket r : this.circuit.getRockets())
-			r.setStrategy(new Strategy(r, this.circuit));
+			r.setStrategy(new Strategy(r, this.circuit,observer));
 	}
 	
 	public  String startCompetition() throws Exception {
