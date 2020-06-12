@@ -3,7 +3,6 @@ package view;
 import application.RaceController;
 import utilities.IObserver;
 
-
 public class Main{
     
 	private static int loadingProgress = 0;
@@ -11,15 +10,11 @@ public class Main{
 		public static void main(String[] args) throws Exception {	
 			System.out.println("Initializing Rockets... This may take a while... (Generating around 200 Milion possible combinations)");
 			RaceController controller=new RaceController();
-			updateProgressBar();
+			updateProgressBar(); // 0%
 			controller.createCircuit(new IObserver() {
-
-				@Override
 				public void updateProgressBar() {
-					// TODO Auto-generated method stub
 					Main.updateProgressBar();
 				}
-	        	
 	        });
 			System.out.println(controller.startCompetition());
 		}   

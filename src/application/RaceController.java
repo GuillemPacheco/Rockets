@@ -1,6 +1,5 @@
 package application;
 
-
 import application.dto.ResultDto;
 import domain.Circuit;
 import domain.Result;
@@ -12,8 +11,6 @@ public class RaceController{
 	
 	private  Circuit circuit;
 	private static ResultController controller = new ResultController();
-	
-
 	 
 	public void createCircuit(IObserver observer) throws Exception {
 		this.circuit = (Factory.selectRandomCircuit());
