@@ -1,10 +1,10 @@
 package view;
 
 import application.RaceController;
-import application.IObservador;
+import application.IObserver;
 
 
-public class Main implements IObservador{
+public class Main implements IObserver{
     
 	private static int loadingProgress = 0;
 	

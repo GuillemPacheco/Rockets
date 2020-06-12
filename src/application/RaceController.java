@@ -1,7 +1,5 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import application.dto.ResultDto;
 import domain.Circuit;
@@ -9,13 +7,13 @@ import domain.Result;
 import domain.Rocket;
 import domain.Strategy;
 
-public class RaceController {
+public class RaceController  {
 	
 	private  Circuit circuit;
 	private static ResultController controller = new ResultController();
-	private static IObservador listener;
+	private static IObserver listener;
 
-	public void setListener(IObservador ob) {
+	public void setListener(IObserver ob) {
 	    listener = ob;
 	}
 	
