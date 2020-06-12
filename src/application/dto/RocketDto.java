@@ -1,4 +1,4 @@
-package application;
+package application.dto;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;

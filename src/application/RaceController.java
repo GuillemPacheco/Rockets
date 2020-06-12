@@ -1,19 +1,34 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import application.dto.ResultDto;
 import domain.Circuit;
 import domain.Result;
 import domain.Rocket;
+import domain.Strategy;
 
-public class resController {
+public class RaceController {
 	
 	private  Circuit circuit;
 	private static ResultController controller = new ResultController();
+	private static IObservador listener;
+
+	public void setListener(IObservador ob) {
+	    listener = ob;
+	}
 	
+	public static void updateBar() {
+        listener.updateProgressBar();
+	}
+	 
 	public void createCircuit() throws Exception {
+		updateBar();
 		this.circuit = (Factory.selectRandomCircuit());
 		this.circuit.addRocket(Factory.createRockets());
 		for (Rocket r : this.circuit.getRockets())
-			r.strategyAccelerations = Strategy.createStrategy(r, this.circuit);
+			r.setStrategy(new Strategy(r, this.circuit));
 	}
 	
 	public  String startCompetition() throws Exception {

@@ -1,8 +1,8 @@
 package domain;
 import java.util.List;
 
-import application.resController;
-import application.ResultDto;
+import application.RaceController;
+import application.dto.ResultDto;
 import utilities.InvalidParamException;
 
 public class Result{
@@ -59,6 +59,6 @@ public class Result{
 		this.rocketName = resultdto.getRocketName();
     	this.time = resultdto.getTime();
     	this.circuitName = resultdto.getCircuitName();
-		resController.updateResult(rocketName,time,circuitName);
+		RaceController.updateResult(rocketName,time,circuitName);
 	}
 }

@@ -1,4 +1,5 @@
 package application;
+import application.dto.ResultDto;
 import domain.Result;
 import persistence.ResultRepository;
 

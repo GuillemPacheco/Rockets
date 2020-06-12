@@ -5,9 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
-import application.CircuitDto;
 import application.ResultController;
-import application.ResultDto;
+import application.dto.CircuitDto;
+import application.dto.ResultDto;
 import domain.Result;
 import utilities.InvalidParamException;
 

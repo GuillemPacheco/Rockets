@@ -1,20 +1,23 @@
 package view;
-import application.resController;
+
+import application.RaceController;
+import application.IObservador;
 
 
-public class Main {
-		
+public class Main implements IObservador{
+    
 	private static int loadingProgress = 0;
 	
 		public static void main(String[] args) throws Exception {	
 			System.out.println("Initializing Rockets... This may take a while... (Generating around 200 Milion possible combinations)");
-			updateProgress();
-			resController controller=new resController();
+			RaceController controller=new RaceController();
+	        Main responder = new Main();
+	        controller.setListener(responder);
 			controller.createCircuit();
 			System.out.println(controller.startCompetition());
-		}    
+		}   
 		
-		public static void updateProgress () {
+		public void updateProgressBar () {
 			loadingProgress++;
 			String ldStr = "";
 			switch (loadingProgress) {

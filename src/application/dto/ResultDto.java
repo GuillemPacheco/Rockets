@@ -1,4 +1,4 @@
-package application;
+package application.dto;
 import domain.Result;
 
 public class ResultDto {

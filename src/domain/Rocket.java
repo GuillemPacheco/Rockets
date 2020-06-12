@@ -4,8 +4,6 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.Strategy;
-
 public class Rocket {
 	
 	private Tank tank;
@@ -15,7 +13,8 @@ public class Rocket {
 	private float distance;
 	private int time;
 	private float totalAcceleration;
-	public List<Integer> strategyAccelerations = new ArrayList<Integer>();
+	
+	public Strategy myStrategy;
 	
 	// Constructors
 	public Rocket(String name,List<Propeller> propellers,Tank tank) throws Exception{
@@ -78,6 +77,9 @@ public class Rocket {
 	}
 	
 	// Other methods
+	public void setStrategy (Strategy s) {
+		myStrategy = s;
+	}
 	public void resetRocket () throws Exception {
 		tank.currentGasoline = tank.getCapacity();
 		actualSpeed = 0;
@@ -87,7 +89,7 @@ public class Rocket {
 	}
 	
 	public String updateValues (float circuitLength) throws Exception {
-		totalAcceleration = getTotalAcceleration(strategyAccelerations.get(time)); // TO GET THE MAXIMUM ACCELERATION OF THE PROPELLERS
+		totalAcceleration = getTotalAcceleration(myStrategy.bestStrategy.get(time)); // TO GET THE MAXIMUM ACCELERATION OF THE PROPELLERS
 		actualSpeed = getSpeed(actualSpeed, time, totalAcceleration);
 		tank.updateCurrentGasoline(tank.instantaneousConsumption(tank.currentGasoline, actualSpeed));
 		time++;

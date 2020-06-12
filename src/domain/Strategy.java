@@ -1,18 +1,19 @@
-package application;
+package domain;
 
 import java.util.List;
+
+import application.RaceController;
+
 import java.util.ArrayList;
 
-import domain.Circuit;
-import domain.Rocket;
 import view.Main;
 
 public class Strategy {
 
-	static List<Integer> bestStrategy = new ArrayList<Integer>();
-	static int bestTime = 999;
+	List<Integer> bestStrategy = new ArrayList<Integer>();
+	int bestTime = 999;
 	
-	static void generateCombinations(int len, int arr[], int n, Rocket r, Circuit c) throws Exception { 
+	void generateCombinations(int len, int arr[], int n, Rocket r, Circuit c) throws Exception { 
         if (len == 1) {
     		List<Integer> teststrategy = new ArrayList<Integer>() {{ for (int i : arr) add(i); }};
     		int time = getTimeToComplete(r,c,teststrategy);
@@ -44,15 +45,14 @@ public class Strategy {
 		
 		return a;
 	}
-	public static List<Integer> createStrategy (Rocket r, Circuit c) throws Exception{
+	public Strategy (Rocket r, Circuit c) throws Exception{
 		bestTime = 999;
         int arr[] = getArray(11,5);
         generateCombinations(arr.length,arr, arr.length, r,c); 
-        Main.updateProgress();
-		return bestStrategy;
+        RaceController.updateBar();
 	}
 	
-	public static int getTimeToComplete (Rocket r, Circuit c, List<Integer> strategy) throws Exception {
+	public int getTimeToComplete (Rocket r, Circuit c, List<Integer> strategy) throws Exception {
 		r.resetRocket();
 		while(r.getTime()<c.getCircuitTime() && r.getTank().getCurrentGasoline()>0 && r.getDistance()<c.getCircuitLength())
 			r.updateValues(c.getCircuitLength(), strategy);
